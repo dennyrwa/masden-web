@@ -22,7 +22,20 @@
     
     <!-- FontAwesome untuk Ikon (Gratis) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+
+    <style>
+        /* Gaya khusus untuk navigasi autohide */
+        .autohide {
+            transition: transform 0.3s ease-in-out;
+        }
+        .scrolled-down {
+            transform: translateY(-100%); /* Sembunyikan ke atas */
+        }
+        .scrolled-up {
+            transform: translateY(0); /* Tampilkan kembali */
+        }
+    </style>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="src/assets/style.css">
     <!-- Schema.org Structured Data untuk Profil Akademisi -->
@@ -73,36 +86,26 @@
         <!-- Komponen Navbar akan ditempatkan di sini -->
         <!-- Navbar Utama -->
 <!-- Navigasi -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <!-- Navigasi -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm autohide">
         <div class="container">
-            <!-- Nama / Brand -->
             <a class="navbar-brand fw-bold" href="index.html">Denny R.W.A.</a>
             
-            <!-- Tombol Hamburger untuk Layar Mobile (Android/iPhone) -->
+            <!-- Tombol Hamburger Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Buka navigasi">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <!-- Daftar Menu Navigasi (Tersembunyi di mobile, memanjang di PC) -->
+            <!-- Daftar Menu -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- Tautan ke Halaman Profil Lengkap -->
                     <li class="nav-item">
                         <a class="nav-link text-white fw-semibold" href="about.html"><i class="fa-solid fa-user-tie me-1"></i> Tentang Saya</a>
                     </li>
-                    <!-- Tautan ke Bagian-bagian di Beranda -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#publications">Publikasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#research">Riset</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#blog">Blog Akademik</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact">Kontak</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#publications">Publikasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#research">Riset</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#blog">Blog Akademik</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Kontak</a></li>
                 </ul>
             </div>
         </div>
