@@ -10,7 +10,7 @@ function renderPublications(publications) {
     const pubListElement = document.getElementById('publication-list');
     if (!pubListElement) return;
 
-    pubListElement.innerHTML = ''; // Hapus indikator loading
+    pubListElement.innerHTML = ''; 
 
     if (publications.length === 0) {
         pubListElement.innerHTML = '<div class="col-12 text-center text-muted"><p>Belum ada publikasi yang ditampilkan.</p></div>';
@@ -149,15 +149,15 @@ function renderBlog(posts) {
                     <div class="card-body p-4">
                         <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill">Artikel</span>
                         <h5 class="fw-bold mb-3">${post.title}</h5>
-                        <!-- Merender format HTML dari Quill.js dengan batas baris tersembunyi -->
                         <div class="card-text text-muted mb-4 overflow-hidden" style="max-height: 80px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             ${post.content}
                         </div>
                     </div>
                     <div class="card-footer bg-white border-0 px-4 pb-4 pt-0">
-                        <button class="btn btn-outline-primary btn-sm rounded-pill w-100" onclick="alert('Fitur baca selengkapnya akan dibangun pada fase selanjutnya.')">
+                        <!-- Tautan dinamis yang mengarah ke halaman detail artikel -->
+                        <a href="article.html?id=${post.id}" class="btn btn-outline-primary btn-sm rounded-pill w-100">
                             Baca Selengkapnya <i class="fa-solid fa-arrow-right ms-1"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

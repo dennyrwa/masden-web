@@ -72,51 +72,41 @@
     <header id="main-header">
         <!-- Komponen Navbar akan ditempatkan di sini -->
         <!-- Navbar Utama -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-        <!-- Brand/Logo -->
-        <a class="navbar-brand fw-bold text-primary" href="#">
-            <i class="fa-solid fa-building-columns me-2"></i>DRW Ashari
-        </a>
-        
-        <!-- Tombol Hamburger untuk Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- Daftar Menu -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#hero">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">Tentang</a>
-                </li>
-                <!-- Dropdown Menu Akademik -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="academicDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Akademik
-                    </a>
-                    <ul class="dropdown-menu border-0 shadow" aria-labelledby="academicDropdown">
-                        <li><a class="dropdown-item" href="#teaching">Pengajaran</a></li>
-                        <li><a class="dropdown-item" href="#research">Riset & Proyek</a></li>
-                        <li><a class="dropdown-item" href="#publications">Publikasi & Buku</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#blog">Blog</a>
-                </li>
-                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                    <!-- Tombol Login tersembunyi/kecil untuk Admin -->
-                    <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="/admin.html">
-                        <i class="fa-solid fa-lock me-1"></i> Admin
-                    </a>
-                </li>
-            </ul>
+<!-- Navigasi -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <!-- Nama / Brand -->
+            <a class="navbar-brand fw-bold" href="index.html">Denny R.W.A.</a>
+            
+            <!-- Tombol Hamburger untuk Layar Mobile (Android/iPhone) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Buka navigasi">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Daftar Menu Navigasi (Tersembunyi di mobile, memanjang di PC) -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Tautan ke Halaman Profil Lengkap -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-semibold" href="about.html"><i class="fa-solid fa-user-tie me-1"></i> Tentang Saya</a>
+                    </li>
+                    <!-- Tautan ke Bagian-bagian di Beranda -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#publications">Publikasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#research">Riset</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#blog">Blog Akademik</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
     </header>
 
     <!-- Area Konten Utama -->
