@@ -79,7 +79,7 @@
 }
 </script>
 </head>
-<body class="bg-light">
+<body class="bg-body-tertiary">
 
     <!-- Area Navigasi Utama -->
     <header id="main-header">
@@ -88,16 +88,13 @@
 <!-- Navigasi -->
     <!-- Navigasi -->
     <!-- Navigasi -->
+    <!-- Navigasi -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">DRW Ashari</a>
-            
-            <!-- Tombol Hamburger Mobile -->
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Buka navigasi">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-            <!-- Daftar Menu -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
@@ -107,8 +104,6 @@
                     <li class="nav-item"><a class="nav-link" href="index.html#research">Riset</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#blog">Blog Akademik</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html#contact">Kontak</a></li>
-                    
-                    <!-- Sakelar Mode Gelap -->
                     <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
                         <button id="theme-toggle" class="btn btn-outline-light btn-sm rounded-pill w-100">
                             <i class="fa-solid fa-moon me-2" id="theme-icon"></i><span id="theme-text">Mode Gelap</span>
@@ -381,6 +376,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Main App Logic (WAJIB tambahkan type="module") -->
-    <script type="module" src="src/assets/app.js"></script>
+    <script src="src/assets/theme.js"></script>
+    <script type="module" src="src/assets/app.js"></script> 
 </body>
 </html>
