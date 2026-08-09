@@ -91,3 +91,38 @@ addPubForm.addEventListener("submit", async (e) => {
     );
   }
 });
+// Referensi form riset
+const addResForm = document.getElementById("add-research-form");
+
+// Proses Tambah Data Riset ke Firestore
+if (addResForm) {
+  addResForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Ambil nilai dari form riset
+    const newResearch = {
+      title: document.getElementById("res-title").value,
+      funding_source: document.getElementById("res-funding").value,
+      year_start: parseInt(document.getElementById("res-year").value),
+      status: document.getElementById("res-status").value,
+      description: document.getElementById("res-desc").value,
+      createdAt: serverTimestamp(), // Menggunakan fungsi dari Firebase
+    };
+
+    try {
+      // Simpan ke koleksi 'research_projects'
+      await addDoc(collection(db, "research_projects"), newResearch);
+
+      // SINTA menghapus cache riset agar pengunjung melihat pembaruan
+      sessionStorage.removeItem("sinta_research_data");
+
+      alert("SINTA: Proyek riset berhasil ditambahkan!");
+      addResForm.reset(); // Kosongkan form
+    } catch (error) {
+      console.error("Gagal menambah riset:", error);
+      alert(
+        "SINTA: Terjadi kesalahan. Pastikan Bapak sudah login dengan benar.",
+      );
+    }
+  });
+}

@@ -1,94 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard | DRW Ashari</title>
     <!-- Mencegah Google mengindeks halaman admin -->
-    <meta name="robots" content="noindex, nofollow">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body class="bg-light">
-
+    <meta name="robots" content="noindex, nofollow" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body class="bg-light">
     <!-- BAGIAN 1: FORM LOGIN (Tampil jika belum login) -->
-    <div id="login-section" class="container mt-5" style="max-width: 400px; display: none;">
-        <div class="card shadow-sm border-0">
-            <div class="card-body p-4">
-                <div class="text-center mb-4">
-                    <i class="fa-solid fa-shield-halved text-primary fs-1 mb-2"></i>
-                    <h4 class="fw-bold">Akses Terbatas</h4>
-                    <p class="text-muted small">Silakan masuk untuk mengelola konten.</p>
-                </div>
-                <form id="login-form">
-                    <div class="mb-3">
-                        <label class="form-label">Email Publikasi</label>
-                        <input type="email" id="admin-email" class="form-control" required>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Kata Sandi</label>
-                        <input type="password" id="admin-password" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100 fw-bold">Login Dashboard</button>
-                    <a href="index.html" class="btn btn-link w-100 mt-2 text-decoration-none text-muted">Kembali ke Beranda</a>
-                </form>
+    <div
+      id="login-section"
+      class="container mt-5"
+      style="max-width: 400px; display: none"
+    >
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <i class="fa-solid fa-shield-halved text-primary fs-1 mb-2"></i>
+            <h4 class="fw-bold">Akses Terbatas</h4>
+            <p class="text-muted small">
+              Silakan masuk untuk mengelola konten.
+            </p>
+          </div>
+          <form id="login-form">
+            <div class="mb-3">
+              <label class="form-label">Email Publikasi</label>
+              <input
+                type="email"
+                id="admin-email"
+                class="form-control"
+                required
+              />
             </div>
+            <div class="mb-4">
+              <label class="form-label">Kata Sandi</label>
+              <input
+                type="password"
+                id="admin-password"
+                class="form-control"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100 fw-bold">
+              Login Dashboard
+            </button>
+            <a
+              href="index.html"
+              class="btn btn-link w-100 mt-2 text-decoration-none text-muted"
+              >Kembali ke Beranda</a
+            >
+          </form>
         </div>
+      </div>
     </div>
 
     <!-- BAGIAN 2: PANEL DASHBOARD (Tampil jika sudah login) -->
-    <div id="dashboard-section" class="container-fluid" style="display: none;">
-        <nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
-            <div class="container">
-                <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-gauge me-2"></i>adaCV CMS</span>
-                <button id="btn-logout" class="btn btn-outline-light btn-sm">Keluar</button>
-            </div>
-        </nav>
-
+    <div id="dashboard-section" class="container-fluid" style="display: none">
+      <nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
         <div class="container">
-            <h2 class="mb-4">Kelola Publikasi</h2>
-            <div class="card shadow-sm border-0 mb-4">
-                <div class="card-header bg-white fw-bold">Tambah Publikasi Baru</div>
-                <div class="card-body">
-                    <form id="add-publication-form">
-                        <div class="row">
-                            <div class="col-md-8 mb-3">
-                                <label class="form-label">Judul Publikasi</label>
-                                <input type="text" id="pub-title" class="form-control" required>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label">Jenis (Jurnal/Buku)</label>
-                                <select id="pub-type" class="form-select">
-                                    <option value="Artikel Jurnal">Artikel Jurnal</option>
-                                    <option value="Buku">Buku</option>
-                                    <option value="Prosiding">Prosiding</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Penerbit / Nama Jurnal</label>
-                                <input type="text" id="pub-publisher" class="form-control" required>
-                            </div>
-                            <div class="col-md-2 mb-3">
-                                <label class="form-label">Tahun</label>
-                                <input type="number" id="pub-year" class="form-control" required>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label">Tautan DOI / URL</label>
-                                <input type="url" id="pub-doi" class="form-control">
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label class="form-label">Abstrak / Deskripsi Singkat</label>
-                                <textarea id="pub-abstract" class="form-control" rows="3" required></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Simpan Publikasi</button>
-                    </form>
-                </div>
-            </div>
+          <span class="navbar-brand mb-0 h1"
+            ><i class="fa-solid fa-gauge me-2"></i>adaCV CMS</span
+          >
+          <button id="btn-logout" class="btn btn-outline-light btn-sm">
+            Keluar
+          </button>
         </div>
+      </nav>
+
+      <div class="container">
+        <h2 class="mb-4">Kelola Publikasi</h2>
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-header bg-white fw-bold">Tambah Publikasi Baru</div>
+          <div class="card-body">
+            <form id="add-publication-form">
+              <div class="row">
+                <div class="col-md-8 mb-3">
+                  <label class="form-label">Judul Publikasi</label>
+                  <input
+                    type="text"
+                    id="pub-title"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Jenis (Jurnal/Buku)</label>
+                  <select id="pub-type" class="form-select">
+                    <option value="Artikel Jurnal">Artikel Jurnal</option>
+                    <option value="Buku">Buku</option>
+                    <option value="Prosiding">Prosiding</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Penerbit / Nama Jurnal</label>
+                  <input
+                    type="text"
+                    id="pub-publisher"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="col-md-2 mb-3">
+                  <label class="form-label">Tahun</label>
+                  <input
+                    type="number"
+                    id="pub-year"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Tautan DOI / URL</label>
+                  <input type="url" id="pub-doi" class="form-control" />
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label">Abstrak / Deskripsi Singkat</label>
+                  <textarea
+                    id="pub-abstract"
+                    class="form-control"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success">
+                <i class="fa-solid fa-plus me-2"></i>Simpan Publikasi
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- Formulir Tambah Riset & Proyek -->
+        <h2 class="mb-4 mt-5">Kelola Riset & Proyek</h2>
+        <div class="card shadow-sm border-0 mb-5">
+          <div class="card-header bg-white fw-bold">
+            Tambah Proyek Riset Baru
+          </div>
+          <div class="card-body">
+            <form id="add-research-form">
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">Judul Riset / Proyek</label>
+                  <input
+                    type="text"
+                    id="res-title"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label"
+                    >Sumber Pendanaan (Contoh: Hibah Internal, Mandiri)</label
+                  >
+                  <input
+                    type="text"
+                    id="res-funding"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Tahun Mulai</label>
+                  <input
+                    type="number"
+                    id="res-year"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label class="form-label">Status</label>
+                  <select id="res-status" class="form-select">
+                    <option value="Berjalan">Berjalan</option>
+                    <option value="Selesai">Selesai</option>
+                  </select>
+                </div>
+                <div class="col-12 mb-3">
+                  <label class="form-label"
+                    >Deskripsi Singkat / Fokus Riset</label
+                  >
+                  <textarea
+                    id="res-desc"
+                    class="form-control"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-plus me-2"></i>Simpan Riset
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Modul Firebase & Logika Admin -->
     <script type="module" src="src/admin/admin.js"></script>
-</body>
+  </body>
 </html>
