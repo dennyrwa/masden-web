@@ -1,4 +1,12 @@
 // src/admin/admin.js
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  deleteDoc,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 import {
   addDoc,
@@ -124,5 +132,97 @@ if (addResForm) {
         "SINTA: Terjadi kesalahan. Pastikan Bapak sudah login dengan benar.",
       );
     }
+  });
+}
+// Referensi Elemen Manajemen Data
+const btnLoadData = document.getElementById("btn-load-data");
+const dataContainer = document.getElementById("data-management-container");
+const adminPubList = document.getElementById("admin-pub-list");
+const adminResList = document.getElementById("admin-res-list");
+
+if (btnLoadData) {
+  btnLoadData.addEventListener("click", async () => {
+    btnLoadData.innerHTML =
+      '<span class="spinner-border spinner-border-sm me-2"></span>Memuat data...';
+
+    try {
+      // Tarik Data Publikasi
+      const pubSnapshot = await getDocs(collection(db, "publications"));
+      adminPubList.innerHTML = "";
+      pubSnapshot.forEach((d) => {
+        const data = d.data();
+        adminPubList.innerHTML += `<tr>
+                    <td><strong>${data.title}</strong></td>
+                    <td>${data.year}</td>
+                    <td><button class="btn btn-sm btn-danger btn-delete" data-id="${d.id}" data-type="publications">Hapus</button></td>
+                </tr>`;
+      });
+
+      // Tarik Data Riset
+      const resSnapshot = await getDocs(collection(db, "research_projects"));
+      adminResList.innerHTML = "";
+      resSnapshot.forEach((d) => {
+        const data = d.data();
+        adminResList.innerHTML += `<tr>
+                    <td><strong>${data.title}</strong></td>
+                    <td><span class="badge bg-secondary">${data.status}</span></td>
+                    <td><button class="btn btn-sm btn-danger btn-delete" data-id="${d.id}" data-type="research_projects">Hapus</button></td>
+                </tr>`;
+      });
+
+      // Tampilkan tabel dan ubah teks tombol
+      dataContainer.style.display = "block";
+      btnLoadData.innerHTML =
+        '<i class="fa-solid fa-sync me-2"></i>Segarkan Data';
+
+      // Pasang fungsi klik untuk semua tombol hapus yang baru saja dibuat
+      attachDeleteEvents();
+    } catch (error) {
+      console.error("Gagal memuat daftar data:", error);
+      alert(
+        "SINTA: Terjadi kesalahan saat memuat data. Periksa koneksi internet Bapak.",
+      );
+      btnLoadData.innerHTML =
+        '<i class="fa-solid fa-sync me-2"></i>Muat Daftar Data';
+    }
+  });
+}
+
+// Fungsi Eksekusi Hapus Data
+function attachDeleteEvents() {
+  const deleteButtons = document.querySelectorAll(".btn-delete");
+  deleteButtons.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      const id = e.target.getAttribute("data-id");
+      const type = e.target.getAttribute("data-type");
+
+      // Konfirmasi ganda untuk mencegah salah klik
+      if (
+        confirm(
+          "Apakah Bapak yakin ingin menghapus data ini secara permanen? Tindakan ini tidak dapat dibatalkan.",
+        )
+      ) {
+        try {
+          // Hapus dari Firestore
+          await deleteDoc(doc(db, type, id));
+
+          // SINTA menghapus memori cache agar website publik langsung ter-update
+          if (type === "publications")
+            sessionStorage.removeItem("sinta_publications_data");
+          if (type === "research_projects")
+            sessionStorage.removeItem("sinta_research_data");
+
+          alert("SINTA: Data berhasil dihapus sepenuhnya.");
+
+          // Panggil fungsi load ulang agar tabel langsung diperbarui
+          btnLoadData.click();
+        } catch (error) {
+          console.error("Gagal menghapus:", error);
+          alert(
+            "SINTA: Gagal menghapus data. Pastikan sesi login Bapak masih aktif.",
+          );
+        }
+      }
+    });
   });
 }
