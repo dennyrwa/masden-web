@@ -1,67 +1,72 @@
 // src/admin/admin.js
 
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  serverTimestamp,
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-// 1. Import Modul Firebase (Disatukan agar tidak terjadi duplikasi deklarasi)
 import { auth, db } from "../firebase/init.js";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  deleteDoc,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-const addBlogForm = document.getElementById("add-blog-form");
-const adminBlogList = document.getElementById("admin-blog-list");
-// Inisialisasi Quill Editor untuk Blog
+// ==========================================
+// 1. INISIALISASI QUILL EDITOR
+// ==========================================
 let quillEditor;
-if (document.getElementById("blog-editor")) {
-  quillEditor = new Quill("#blog-editor", {
-    theme: "snow",
-    placeholder: "Tuliskan gagasan, opini, atau ulasan akademik di sini...",
-    modules: {
-      toolbar: [
-        ["bold", "italic", "underline"],
-        [{ list: "ordered" }, { list: "bullet" }],
-        ["link", "blockquote"],
-        ["clean"],
-      ],
-    },
-  });
+// Kita pastikan elemennya ada sebelum menginisialisasi
+if (document.getElementById('blog-editor')) {
+    quillEditor = new Quill('#blog-editor', {
+        theme: 'snow',
+        placeholder: 'Tuliskan gagasan, opini, atau ulasan akademik di sini...',
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link', 'blockquote'],
+                ['clean'] // Tombol untuk menghapus format
+            ]
+        }
+    });
 }
 
-// Referensi Elemen UI
+// ==========================================
+// REFERENSI ELEMEN UI
+// ==========================================
 const loginSection = document.getElementById("login-section");
 const dashboardSection = document.getElementById("dashboard-section");
 const loginForm = document.getElementById("login-form");
 const logoutBtn = document.getElementById("btn-logout");
+
 const addPubForm = document.getElementById("add-publication-form");
 const addResForm = document.getElementById("add-research-form");
+const addBlogForm = document.getElementById("add-blog-form");
+
 const btnLoadData = document.getElementById("btn-load-data");
 const dataContainer = document.getElementById("data-management-container");
 const adminPubList = document.getElementById("admin-pub-list");
 const adminResList = document.getElementById("admin-res-list");
+const adminBlogList = document.getElementById("admin-blog-list");
 
-// 1. Pantau Status Sesi Pengguna
+// ==========================================
+// 2. OTENTIKASI (LOGIN & LOGOUT)
+// ==========================================
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // Jika sesi valid, sembunyikan form login, tampilkan dashboard
     console.log("SINTA: Akses admin diverifikasi untuk", user.email);
-    loginSection.style.display = "none";
-    dashboardSection.style.display = "block";
+    if(loginSection) loginSection.style.display = "none";
+    if(dashboardSection) dashboardSection.style.display = "block";
   } else {
-    // Jika belum login, tampilkan form login
-    loginSection.style.display = "block";
-    dashboardSection.style.display = "none";
+    if(loginSection) loginSection.style.display = "block";
+    if(dashboardSection) dashboardSection.style.display = "none";
   }
 });
 
-// 2. Proses Login
 if (loginForm) {
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -70,9 +75,7 @@ if (loginForm) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert(
-        "SINTA: Selamat datang kembali, Bapak Denny Rakhmad Widi Ashari, M.E.!",
-      );
+      alert("SINTA: Selamat datang kembali, Bapak Denny Rakhmad Widi Ashari, M.E.!");
     } catch (error) {
       console.error("Kesalahan login:", error.message);
       alert("Akses ditolak. Periksa kembali email dan kata sandi Bapak.");
@@ -80,7 +83,6 @@ if (loginForm) {
   });
 }
 
-// 3. Proses Logout
 if (logoutBtn) {
   logoutBtn.addEventListener("click", async () => {
     try {
@@ -92,12 +94,14 @@ if (logoutBtn) {
   });
 }
 
-// 4. Proses Tambah Data Publikasi ke Firestore
+// ==========================================
+// 3. PROSES TAMBAH DATA
+// ==========================================
+
+// --- A. Publikasi ---
 if (addPubForm) {
   addPubForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    // Ambil nilai dari form
     const newPublication = {
       title: document.getElementById("pub-title").value,
       type: document.getElementById("pub-type").value,
@@ -105,77 +109,63 @@ if (addPubForm) {
       year: parseInt(document.getElementById("pub-year").value),
       doi_url: document.getElementById("pub-doi").value,
       abstract: document.getElementById("pub-abstract").value,
-      createdAt: serverTimestamp(), // Timestamp waktu server
+      createdAt: serverTimestamp(),
     };
 
     try {
-      // Simpan ke koleksi 'publications' di Firestore
       await addDoc(collection(db, "publications"), newPublication);
-
-      // SINTA menghapus cache agar pengunjung publik melihat data terbaru
       sessionStorage.removeItem("sinta_publications_data");
-
       alert("SINTA: Publikasi berhasil ditambahkan ke database!");
-      addPubForm.reset(); // Kosongkan form
+      addPubForm.reset();
     } catch (error) {
       console.error("Gagal menambah publikasi:", error);
-      alert(
-        "SINTA: Terjadi kesalahan saat menyimpan data. Pastikan Security Rules sudah dikonfigurasi.",
-      );
+      alert("SINTA: Terjadi kesalahan saat menyimpan data.");
     }
   });
 }
 
-// 5. Proses Tambah Data Riset ke Firestore
+// --- B. Riset & Proyek ---
 if (addResForm) {
   addResForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    // Ambil nilai dari form riset
     const newResearch = {
       title: document.getElementById("res-title").value,
       funding_source: document.getElementById("res-funding").value,
       year_start: parseInt(document.getElementById("res-year").value),
       status: document.getElementById("res-status").value,
       description: document.getElementById("res-desc").value,
-      createdAt: serverTimestamp(), // Menggunakan fungsi dari Firebase
+      createdAt: serverTimestamp(),
     };
 
     try {
-      // Simpan ke koleksi 'research_projects'
       await addDoc(collection(db, "research_projects"), newResearch);
-
-      // SINTA menghapus cache riset agar pengunjung melihat pembaruan
       sessionStorage.removeItem("sinta_research_data");
-
       alert("SINTA: Proyek riset berhasil ditambahkan!");
-      addResForm.reset(); // Kosongkan form
+      addResForm.reset();
     } catch (error) {
       console.error("Gagal menambah riset:", error);
-      alert(
-        "SINTA: Terjadi kesalahan. Pastikan Bapak sudah login dengan benar.",
-      );
+      alert("SINTA: Terjadi kesalahan saat menyimpan data.");
     }
   });
 }
 
-// Proses Tambah Artikel Blog ke Firestore
+// --- C. Blog Akademik ---
 if (addBlogForm) {
   addBlogForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    // Mengambil isi editor dalam format HTML
+    
+    // Ambil isi HTML dari Quill Editor
     const blogHtmlContent = quillEditor.root.innerHTML;
 
-    // Validasi agar editor tidak dikirim dalam keadaan kosong
-    if (blogHtmlContent === "<p><br></p>") {
-      alert("SINTA: Isi artikel tidak boleh kosong.");
-      return;
+    // Validasi agar tidak kosong
+    if (blogHtmlContent === '<p><br></p>' || blogHtmlContent.trim() === '') {
+        alert("SINTA: Isi artikel tidak boleh kosong.");
+        return;
     }
 
     const newPost = {
       title: document.getElementById("blog-title").value,
-      content: blogHtmlContent, // Disimpan dalam format HTML
+      content: blogHtmlContent,
       createdAt: serverTimestamp(),
     };
 
@@ -183,25 +173,24 @@ if (addBlogForm) {
       await addDoc(collection(db, "blog_posts"), newPost);
       sessionStorage.removeItem("sinta_blog_data");
       alert("SINTA: Artikel blog berhasil dipublikasikan!");
-
-      // Kosongkan form dan editor
       addBlogForm.reset();
-      quillEditor.setContents([]);
+      quillEditor.setContents([]); // Kosongkan editor setelah berhasil
     } catch (error) {
       console.error("Gagal menambah artikel blog:", error);
-      alert("SINTA: Terjadi kesalahan. Pastikan sesi login masih aktif.");
+      alert("SINTA: Terjadi kesalahan. Pastikan Bapak sudah login dengan benar.");
     }
   });
 }
 
-// 6. Manajemen Data (Load Data Sesuai Permintaan)
+// ==========================================
+// 4. MANAJEMEN DATA (HAPUS)
+// ==========================================
 if (btnLoadData) {
   btnLoadData.addEventListener("click", async () => {
-    btnLoadData.innerHTML =
-      '<span class="spinner-border spinner-border-sm me-2"></span>Memuat data...';
+    btnLoadData.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memuat data...';
 
     try {
-      // Tarik Data Publikasi
+      // Load Publikasi
       const pubSnapshot = await getDocs(collection(db, "publications"));
       adminPubList.innerHTML = "";
       pubSnapshot.forEach((d) => {
@@ -213,7 +202,7 @@ if (btnLoadData) {
                 </tr>`;
       });
 
-      // Tarik Data Riset
+      // Load Riset
       const resSnapshot = await getDocs(collection(db, "research_projects"));
       adminResList.innerHTML = "";
       resSnapshot.forEach((d) => {
@@ -225,36 +214,29 @@ if (btnLoadData) {
                 </tr>`;
       });
 
-      // Tarik Data Blog
+      // Load Blog
       const blogSnapshot = await getDocs(collection(db, "blog_posts"));
       adminBlogList.innerHTML = "";
       blogSnapshot.forEach((d) => {
         const data = d.data();
         adminBlogList.innerHTML += `<tr>
-                  <td><strong>${data.title}</strong></td>
-                  <td><button class="btn btn-sm btn-danger btn-delete" data-id="${d.id}" data-type="blog_posts">Hapus</button></td>
-              </tr>`;
+                    <td><strong>${data.title}</strong></td>
+                    <td><button class="btn btn-sm btn-danger btn-delete" data-id="${d.id}" data-type="blog_posts">Hapus</button></td>
+                </tr>`;
       });
 
-      // Tampilkan tabel dan ubah teks tombol
       dataContainer.style.display = "block";
-      btnLoadData.innerHTML =
-        '<i class="fa-solid fa-sync me-2"></i>Segarkan Data';
-
-      // Pasang fungsi klik untuk semua tombol hapus yang baru saja dibuat
+      btnLoadData.innerHTML = '<i class="fa-solid fa-sync me-2"></i>Segarkan Data';
       attachDeleteEvents();
+
     } catch (error) {
       console.error("Gagal memuat daftar data:", error);
-      alert(
-        "SINTA: Terjadi kesalahan saat memuat data. Periksa koneksi internet Bapak.",
-      );
-      btnLoadData.innerHTML =
-        '<i class="fa-solid fa-sync me-2"></i>Muat Daftar Data';
+      alert("SINTA: Terjadi kesalahan saat memuat data. Periksa koneksi internet Bapak.");
+      btnLoadData.innerHTML = '<i class="fa-solid fa-sync me-2"></i>Muat Daftar Data';
     }
   });
 }
 
-// 7. Fungsi Eksekusi Hapus Data
 function attachDeleteEvents() {
   const deleteButtons = document.querySelectorAll(".btn-delete");
   deleteButtons.forEach((btn) => {
@@ -262,32 +244,18 @@ function attachDeleteEvents() {
       const id = e.target.getAttribute("data-id");
       const type = e.target.getAttribute("data-type");
 
-      // Konfirmasi ganda untuk mencegah salah klik
-      if (
-        confirm(
-          "Apakah Bapak yakin ingin menghapus data ini secara permanen? Tindakan ini tidak dapat dibatalkan.",
-        )
-      ) {
+      if (confirm("Apakah Bapak yakin ingin menghapus data ini secara permanen?")) {
         try {
-          // Hapus dari Firestore
           await deleteDoc(doc(db, type, id));
-
-          // SINTA menghapus memori cache agar website publik langsung ter-update
-          if (type === "publications")
-            sessionStorage.removeItem("sinta_publications_data");
-          if (type === "research_projects")
-            sessionStorage.removeItem("sinta_research_data");
-
+          if (type === "publications") sessionStorage.removeItem("sinta_publications_data");
+          if (type === "research_projects") sessionStorage.removeItem("sinta_research_data");
+          if (type === "blog_posts") sessionStorage.removeItem("sinta_blog_data");
+          
           alert("SINTA: Data berhasil dihapus sepenuhnya.");
-          if (type === "blog_posts")
-            sessionStorage.removeItem("sinta_blog_data");
-          // Panggil fungsi load ulang agar tabel langsung diperbarui
-          btnLoadData.click();
+          btnLoadData.click(); // Segarkan tabel otomatis
         } catch (error) {
           console.error("Gagal menghapus:", error);
-          alert(
-            "SINTA: Gagal menghapus data. Pastikan sesi login Bapak masih aktif.",
-          );
+          alert("SINTA: Gagal menghapus data. Pastikan sesi login Bapak masih aktif.");
         }
       }
     });
