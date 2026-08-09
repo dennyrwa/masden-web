@@ -6,21 +6,15 @@
     <title>Blog Akademik | DRW Ashari</title>
 
     <!-- CSS Bootstrap & FontAwesome -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
     <style>
-      /* Desain tipografi khusus untuk kenyamanan membaca opini akademik */
+      /* Desain tipografi yang sudah dioptimalkan untuk adaptasi Mode Gelap */
       .article-content {
         font-size: 1.1rem;
         line-height: 1.8;
-        color: #333;
+        /* SINTA menghapus color statis agar beradaptasi otomatis mengikuti tema */
       }
       .article-content img {
         max-width: 100%;
@@ -31,25 +25,43 @@
       .article-content blockquote {
         border-left: 4px solid #0d6efd;
         padding-left: 1.5rem;
-        color: #6c757d;
         font-style: italic;
-        background-color: #f8f9fa;
         padding: 1rem;
         border-radius: 0 8px 8px 0;
+        /* Menggunakan variabel warna Bootstrap agar berubah dinamis saat mode gelap */
+        background-color: var(--bs-secondary-bg);
+        color: var(--bs-body-color);
       }
     </style>
   </head>
-  <body class="bg-light">
-    <!-- Navigasi -->
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm"
-    >
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">DRW Ashari</a>.</a>
-        <a href="index.html#blog" class="btn btn-outline-light btn-sm"
-          ><i class="fa-solid fa-arrow-left me-2"></i>Kembali ke Beranda</a
-        >
-      </div>
+  <!-- Menghapus bg-light menjadi adaptif -->
+  <body class="bg-body-tertiary">
+    
+    <!-- Navigasi Seragam (Universal) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">DRW Ashari</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Buka navigasi">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-semibold" href="about.html"><i class="fa-solid fa-user-tie me-1"></i> Tentang Saya</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#publications">Publikasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#research">Riset</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#blog">Blog Akademik</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Kontak</a></li>
+                    <!-- Tombol Mode Gelap -->
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <button id="theme-toggle" class="btn btn-outline-light btn-sm rounded-pill w-100">
+                            <i class="fa-solid fa-moon me-2" id="theme-icon"></i><span id="theme-text">Mode Gelap</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
     <!-- Area Konten Artikel -->

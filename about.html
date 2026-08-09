@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profil Lengkap | DRW Ashari</title>
 
-    <!-- CSS Bootstrap & FontAwesome -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -34,16 +33,54 @@
       }
     </style>
   </head>
-  <body class="bg-light">
-    <!-- Navigasi -->
+  <body class="bg-body-tertiary">
+    <!-- Navigasi Seragam (Universal) -->
     <nav
       class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm"
     >
       <div class="container">
         <a class="navbar-brand fw-bold" href="index.html">DRW Ashari</a>
-        <a href="index.html" class="btn btn-outline-light btn-sm"
-          ><i class="fa-solid fa-arrow-left me-2"></i>Beranda</a
+        <button
+          class="navbar-toggler border-0 shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Buka navigasi"
         >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link text-white fw-semibold" href="about.html"
+                ><i class="fa-solid fa-user-tie me-1"></i> Tentang Saya</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#publications">Publikasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#research">Riset</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#blog">Blog Akademik</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#contact">Kontak</a>
+            </li>
+            <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+              <button
+                id="theme-toggle"
+                class="btn btn-outline-light btn-sm rounded-pill w-100"
+              >
+                <i class="fa-solid fa-moon me-2" id="theme-icon"></i
+                ><span id="theme-text">Mode Gelap</span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
 
@@ -52,9 +89,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-8">
-            <h1 class="fw-bold display-5">
-              H. Denny Rakhmad Widi Ashari, M.E.
-            </h1>
+            <h1 class="fw-bold display-5">H. Denny Rakhmad Widi Ashari,M.E.</h1>
             <p class="lead mt-3 mb-0" style="opacity: 0.9">
               Dosen Program Studi Perbankan Syariah | Pakar Manajemen
               Operasional | Asesor Kompetensi BNSP
@@ -67,13 +102,12 @@
     <!-- Area Konten Utama -->
     <div class="container py-5">
       <div class="row g-5">
-        <!-- Kolom Kiri: Biografi & Pendidikan -->
         <div class="col-lg-8">
           <section class="mb-5">
             <h3 class="fw-bold mb-4 border-bottom pb-2 text-primary">
               Biografi Singkat
             </h3>
-            <p class="fs-5 text-muted" style="line-height: 1.8">
+            <p class="fs-5 text-body-secondary" style="line-height: 1.8">
               Lahir di Tulungagung pada 13 Juli 1984, saya mendedikasikan karier
               pada titik temu antara teori akademis dan keunggulan praktis dalam
               Manajemen Operasional. Pengalaman lebih dari satu dekade di
@@ -90,27 +124,25 @@
             </h3>
 
             <div class="timeline-item">
-              <h5 class="fw-bold text-dark mb-1">
-                Magister Ekonomi Syariah (S2)
-              </h5>
+              <h5 class="fw-bold mb-1">Magister Ekonomi Syariah (S2)</h5>
               <p class="text-primary fw-semibold mb-2">
                 Institut Agama Islam Negeri Tulungagung (UIN Sayyid Ali
                 Rahmatullah Tulungagung)
               </p>
-              <p class="text-muted">
+              <p class="text-body-secondary">
                 Meraih predikat sebagai lulusan terbaik. Memperdalam aspek
-                ekonomi manajemen dan operasional berbasis syariah.
+                ekonomi dan operasional berbasis syariah.
               </p>
             </div>
 
             <div class="timeline-item">
-              <h5 class="fw-bold text-dark mb-1">
+              <h5 class="fw-bold mb-1">
                 Sarjana Ilmu Administrasi Publik (S1)
               </h5>
               <p class="text-primary fw-semibold mb-2">Universitas Brawijaya</p>
-              <p class="text-muted">
+              <p class="text-body-secondary">
                 Menyelesaikan pendidikan sarjana dalam waktu akselerasi 3,5
-                tahun dengan fokus pada tata kelola dan administrasi.
+                tahun dengan fokus pada tata kelola dan administrasi publik.
               </p>
             </div>
           </section>
@@ -121,13 +153,13 @@
             </h3>
 
             <div class="timeline-item">
-              <h5 class="fw-bold text-dark mb-1">
+              <h5 class="fw-bold mb-1">
                 Dosen Tetap Program Studi Perbankan Syariah
               </h5>
               <p class="text-primary fw-semibold mb-2">
                 Universitas Nahdlatul Ulama Blitar
               </p>
-              <p class="text-muted">
+              <p class="text-body-secondary">
                 Mengampu mata kuliah terkait Manajemen Operasional, merancang
                 kurikulum terintegrasi, dan aktif melakukan penelitian empiris
                 di bidang <em>Service Excellence</em> dan risiko operasional
@@ -136,13 +168,11 @@
             </div>
 
             <div class="timeline-item">
-              <h5 class="fw-bold text-dark mb-1">
-                Praktisi Perbankan Nasional
-              </h5>
+              <h5 class="fw-bold mb-1">Praktisi Perbankan Nasional</h5>
               <p class="text-primary fw-semibold mb-2">
-                PT Bank Danamon Indonesia, Tbk & PT Bank Muamalat Indonesia, Tbk
+                PT Bank Danamon & PT Bank Muamalat
               </p>
-              <p class="text-muted">
+              <p class="text-body-secondary">
                 Berpengalaman lebih dari 10 tahun dalam mengelola operasional
                 perbankan konvensional maupun syariah, memastikan kepatuhan
                 prosedur, dan optimalisasi layanan nasabah.
@@ -151,39 +181,43 @@
           </section>
         </div>
 
-        <!-- Kolom Kanan: Sertifikasi & Organisasi -->
+        <!-- Kolom Kanan -->
         <div class="col-lg-4">
           <div
-            class="card border-0 shadow-sm rounded-4 mb-4 border-top border-primary border-4"
+            class="card border-0 shadow-sm rounded-4 mb-4 border-top border-primary border-4 bg-body"
           >
             <div class="card-body p-4">
               <h5 class="fw-bold mb-3">
                 <i class="fa-solid fa-certificate text-primary me-2"></i
                 >Sertifikasi Kompetensi
               </h5>
-              <p class="text-muted mb-2">
-                Saya memegang lisensi resmi dari Badan Nasional Sertifikasi
-                Profesi (BNSP) sebagai:
+              <p class="text-body-secondary mb-2">
+                Saya memegang lisensi resmi dari BNSP sebagai:
               </p>
-              <div class="p-3 bg-light rounded-3 fw-bold text-center border">
-                Asesor Kompetensi<br />Skema Pelayanan Kantor Depan Bank (Front
-                Officer)
+              <div
+                class="p-3 bg-secondary-subtle rounded-3 fw-bold text-center border"
+              >
+                Asesor Kompetensi<br />Skema Pelayanan Kantor Depan Bank
               </div>
             </div>
           </div>
 
-          <div class="card border-0 shadow-sm rounded-4 mb-4">
+          <div class="card border-0 shadow-sm rounded-4 mb-4 bg-body">
             <div class="card-body p-4">
               <h5 class="fw-bold mb-3">
                 <i class="fa-solid fa-users text-primary me-2"></i>Aktivitas
                 Organisasi
               </h5>
-              <ul class="list-group list-group-flush text-muted">
-                <li class="list-group-item px-0 py-2 border-0">
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item px-0 py-2 border-0 bg-transparent text-body-secondary"
+                >
                   <i class="fa-solid fa-check text-success me-2"></i>Sekretaris
-                  LKKNU Madani MWC Kota Tulungagung
+                  LKKNU Madani MWC Tulungagung
                 </li>
-                <li class="list-group-item px-0 py-2 border-0">
+                <li
+                  class="list-group-item px-0 py-2 border-0 bg-transparent text-body-secondary"
+                >
                   <i class="fa-solid fa-check text-success me-2"></i>Warga
                   Persaudaraan Setia Hati Terate
                 </li>
@@ -194,7 +228,6 @@
       </div>
     </div>
 
-    <!-- Script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="src/assets/theme.js"></script>
   </body>
