@@ -201,6 +201,93 @@
             </form>
           </div>
         </div>
+        <!-- Area Manajemen Data (Hapus Data) -->
+        <h2 class="mb-4 mt-5">Manajemen Data</h2>
+        <div
+          class="card shadow-sm border-0 mb-5 border-top border-danger border-4"
+        >
+          <div class="card-header bg-white fw-bold text-danger">
+            Hapus Data Publikasi & Riset
+          </div>
+          <div class="card-body">
+            <p class="text-muted small mb-4">
+              Untuk menjaga efisiensi kuota database, daftar data hanya akan
+              ditarik dari server jika Bapak menekan tombol di bawah ini.
+            </p>
+
+            <button id="btn-load-data" class="btn btn-outline-secondary mb-3">
+              <i class="fa-solid fa-sync me-2"></i>Muat Daftar Data
+            </button>
+
+            <!-- Kontainer Tabel (Awalnya Tersembunyi) -->
+            <div id="data-management-container" style="display: none">
+              <ul class="nav nav-tabs mb-3" id="manageTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="pub-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#pub-pane"
+                    type="button"
+                    role="tab"
+                  >
+                    Data Publikasi
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="res-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#res-pane"
+                    type="button"
+                    role="tab"
+                  >
+                    Data Riset
+                  </button>
+                </li>
+              </ul>
+
+              <div class="tab-content" id="manageTabsContent">
+                <!-- Tabel Publikasi -->
+                <div
+                  class="tab-pane fade show active"
+                  id="pub-pane"
+                  role="tabpanel"
+                >
+                  <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Judul Publikasi</th>
+                          <th>Tahun</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody id="admin-pub-list"></tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- Tabel Riset -->
+                <div class="tab-pane fade" id="res-pane" role="tabpanel">
+                  <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Judul Riset / Proyek</th>
+                          <th>Status</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody id="admin-res-list"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
