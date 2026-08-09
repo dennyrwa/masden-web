@@ -225,37 +225,64 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   if (document.getElementById("blog-list")) {
     fetchBlog();
-  }// --- Logika Autohide Navbar & UX Mobile ---
-    const el_autohide = document.querySelector('.autohide');
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    if (el_autohide) {
-        let last_scroll_top = 0;
-        window.addEventListener('scroll', () => {
-            // Celah Logika 1: Cegah autohide jika menu mobile sedang terbuka
-            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                return; 
-            }
-            
-            let scroll_top = window.scrollY;
-            if (scroll_top < last_scroll_top) {
-                // Menggulir ke atas
-                el_autohide.classList.remove('scrolled-down');
-                el_autohide.classList.add('scrolled-up');
-            } else {
-                // Menggulir ke bawah
-                el_autohide.classList.remove('scrolled-up');
-                el_autohide.classList.add('scrolled-down');
-            }
-            last_scroll_top = scroll_top;
-        });
-        // Celah Logika 2: Tutup menu otomatis setelah tautan diklik di versi mobile
-    const navLinks = document.querySelectorAll('.nav-item .nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                navbarToggler.click(); // Simulasikan klik pada hamburger untuk menutup
-            }
-        });
+  }
+  // ==========================================
+  // INISIALISASI (Jalankan saat halaman dimuat)
+  // ==========================================
+  document.addEventListener("DOMContentLoaded", () => {
+    // --- Memuat Data Modul ---
+    if (document.getElementById("publication-list")) fetchPublications();
+    if (document.getElementById("research-list")) fetchResearch();
+    if (document.getElementById("blog-list")) fetchBlog();
+
+    // --- Logika Mode Gelap (Dark Mode) ---
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const themeText = document.getElementById("theme-text");
+    const htmlElement = document.documentElement;
+
+    if (themeToggleBtn) {
+      // Cek preferensi sebelumnya di penyimpanan lokal
+      const currentTheme = localStorage.getItem("theme") || "light";
+      setTheme(currentTheme);
+
+      themeToggleBtn.addEventListener("click", () => {
+        const newTheme =
+          htmlElement.getAttribute("data-bs-theme") === "dark"
+            ? "light"
+            : "dark";
+        setTheme(newTheme);
+      });
+    }
+
+    function setTheme(theme) {
+      htmlElement.setAttribute("data-bs-theme", theme);
+      localStorage.setItem("theme", theme);
+
+      if (theme === "dark") {
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+        themeText.textContent = "Mode Terang";
+        themeToggleBtn.classList.replace("btn-outline-light", "btn-light");
+        themeToggleBtn.classList.add("text-dark");
+      } else {
+        themeIcon.classList.replace("fa-sun", "fa-moon");
+        themeText.textContent = "Mode Gelap";
+        themeToggleBtn.classList.replace("btn-light", "btn-outline-light");
+        themeToggleBtn.classList.remove("text-dark");
+      }
+    }
+
+    // Menutup menu mobile otomatis jika tautan diklik
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navLinks = document.querySelectorAll(".nav-item .nav-link");
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+          navbarToggler.click();
+        }
+      });
+    });
+  });
 });
