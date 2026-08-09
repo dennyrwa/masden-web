@@ -18,6 +18,22 @@ import {
 
 const addBlogForm = document.getElementById("add-blog-form");
 const adminBlogList = document.getElementById("admin-blog-list");
+// Inisialisasi Quill Editor untuk Blog
+let quillEditor;
+if (document.getElementById("blog-editor")) {
+  quillEditor = new Quill("#blog-editor", {
+    theme: "snow",
+    placeholder: "Tuliskan gagasan, opini, atau ulasan akademik di sini...",
+    modules: {
+      toolbar: [
+        ["bold", "italic", "underline"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link", "blockquote"],
+        ["clean"],
+      ],
+    },
+  });
+}
 
 // Referensi Elemen UI
 const loginSection = document.getElementById("login-section");
@@ -148,9 +164,18 @@ if (addBlogForm) {
   addBlogForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Mengambil isi editor dalam format HTML
+    const blogHtmlContent = quillEditor.root.innerHTML;
+
+    // Validasi agar editor tidak dikirim dalam keadaan kosong
+    if (blogHtmlContent === "<p><br></p>") {
+      alert("SINTA: Isi artikel tidak boleh kosong.");
+      return;
+    }
+
     const newPost = {
       title: document.getElementById("blog-title").value,
-      content: document.getElementById("blog-content").value,
+      content: blogHtmlContent, // Disimpan dalam format HTML
       createdAt: serverTimestamp(),
     };
 
@@ -158,12 +183,13 @@ if (addBlogForm) {
       await addDoc(collection(db, "blog_posts"), newPost);
       sessionStorage.removeItem("sinta_blog_data");
       alert("SINTA: Artikel blog berhasil dipublikasikan!");
+
+      // Kosongkan form dan editor
       addBlogForm.reset();
+      quillEditor.setContents([]);
     } catch (error) {
       console.error("Gagal menambah artikel blog:", error);
-      alert(
-        "SINTA: Terjadi kesalahan. Pastikan Bapak sudah login dengan benar.",
-      );
+      alert("SINTA: Terjadi kesalahan. Pastikan sesi login masih aktif.");
     }
   });
 }
