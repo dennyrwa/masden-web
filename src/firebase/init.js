@@ -6,12 +6,13 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth
 
 // Konfigurasi ini nantinya Bapak dapatkan dari Firebase Console
 const firebaseConfig = {
-  apiKey: "API_KEY_BAPAK",
-  authDomain: "PROJECT_ID.firebaseapp.com",
-  projectId: "PROJECT_ID",
-  storageBucket: "PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
+  apiKey: "AIzaSyC-ewFHd9lCp0ZDyAkEKu2bA_AcQBfx8R4",
+  authDomain: "masden-web.firebaseapp.com",
+  projectId: "masden-web",
+  storageBucket: "masden-web.firebasestorage.app",
+  messagingSenderId: "781504676708",
+  appId: "1:781504676708:web:ab76071db3e77f461ef071",
+  measurementId: "G-9F5CQLNGWF",
 };
 
 // Inisialisasi Firebase
