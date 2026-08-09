@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard | DRW Ashari</title>
+    <title>Admin Dashboard | Denny R.W.A.</title>
     <!-- Mencegah Google mengindeks halaman admin -->
     <meta name="robots" content="noindex, nofollow" />
     <link
@@ -64,11 +64,15 @@
     </div>
 
     <!-- BAGIAN 2: PANEL DASHBOARD (Tampil jika sudah login) -->
-    <div id="dashboard-section" class="container-fluid" style="display: none">
+    <div
+      id="dashboard-section"
+      class="container-fluid pb-5"
+      style="display: none"
+    >
       <nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
         <div class="container">
           <span class="navbar-brand mb-0 h1"
-            ><i class="fa-solid fa-gauge me-2"></i>adaCV CMS</span
+            ><i class="fa-solid fa-gauge me-2"></i>SINTA CMS</span
           >
           <button id="btn-logout" class="btn btn-outline-light btn-sm">
             Keluar
@@ -77,8 +81,9 @@
       </nav>
 
       <div class="container">
+        <!-- MODUL 1: PUBLIKASI -->
         <h2 class="mb-4">Kelola Publikasi</h2>
-        <div class="card shadow-sm border-0 mb-4">
+        <div class="card shadow-sm border-0 mb-5">
           <div class="card-header bg-white fw-bold">Tambah Publikasi Baru</div>
           <div class="card-body">
             <form id="add-publication-form">
@@ -138,7 +143,8 @@
             </form>
           </div>
         </div>
-        <!-- Formulir Tambah Riset & Proyek -->
+
+        <!-- MODUL 2: RISET & PROYEK -->
         <h2 class="mb-4 mt-5">Kelola Riset & Proyek</h2>
         <div class="card shadow-sm border-0 mb-5">
           <div class="card-header bg-white fw-bold">
@@ -157,9 +163,7 @@
                   />
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label class="form-label"
-                    >Sumber Pendanaan (Contoh: Hibah Internal, Mandiri)</label
-                  >
+                  <label class="form-label">Sumber Pendanaan</label>
                   <input
                     type="text"
                     id="res-funding"
@@ -201,7 +205,8 @@
             </form>
           </div>
         </div>
-        <!-- Area Manajemen Data (Hapus Data) -->
+
+        <!-- MODUL 3: MANAJEMEN DATA (HAPUS DATA) -->
         <h2 class="mb-4 mt-5">Manajemen Data</h2>
         <div
           class="card shadow-sm border-0 mb-5 border-top border-danger border-4"
@@ -219,7 +224,7 @@
               <i class="fa-solid fa-sync me-2"></i>Muat Daftar Data
             </button>
 
-            <!-- Kontainer Tabel (Awalnya Tersembunyi) -->
+            <!-- Kontainer Tabel -->
             <div id="data-management-container" style="display: none">
               <ul class="nav nav-tabs mb-3" id="manageTabs" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -249,7 +254,6 @@
               </ul>
 
               <div class="tab-content" id="manageTabsContent">
-                <!-- Tabel Publikasi -->
                 <div
                   class="tab-pane fade show active"
                   id="pub-pane"
@@ -269,7 +273,6 @@
                   </div>
                 </div>
 
-                <!-- Tabel Riset -->
                 <div class="tab-pane fade" id="res-pane" role="tabpanel">
                   <div class="table-responsive">
                     <table class="table table-hover align-middle">
@@ -291,7 +294,8 @@
       </div>
     </div>
 
-    <!-- Modul Firebase & Logika Admin -->
+    <!-- Script Bootstrap & Aplikasi -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="src/admin/admin.js"></script>
   </body>
 </html>
