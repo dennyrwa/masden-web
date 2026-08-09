@@ -151,7 +151,69 @@ async function fetchResearch() {
     console.error("Gagal memuat data riset:", error);
   }
 }
+// Fungsi untuk merender UI Card Blog
+function renderBlog(posts) {
+  const blogListElement = document.getElementById("blog-list");
+  blogListElement.innerHTML = "";
 
+  if (posts.length === 0) {
+    blogListElement.innerHTML =
+      '<div class="col-12 text-center text-muted"><p>Belum ada artikel yang dipublikasikan.</p></div>';
+    return;
+  }
+
+  posts.forEach((post) => {
+    const cardHTML = `
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-body p-4">
+                        <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill">Artikel</span>
+                        <h5 class="fw-bold mb-3">${post.title}</h5>
+                        <!-- Menampilkan 120 karakter pertama sebagai cuplikan -->
+                        <p class="card-text text-muted mb-4">${post.content.substring(0, 120)}...</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 px-4 pb-4 pt-0">
+                        <button class="btn btn-outline-primary btn-sm rounded-pill w-100" onclick="alert('Fitur baca selengkapnya (Halaman Detail Artikel) akan kita bangun di fase pengembangan selanjutnya.')">
+                            Baca Selengkapnya <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    blogListElement.innerHTML += cardHTML;
+  });
+}
+
+// Fungsi mengambil data blog dengan Caching
+async function fetchBlog() {
+  const cacheKey = "sinta_blog_data";
+  const cachedData = sessionStorage.getItem(cacheKey);
+
+  if (cachedData) {
+    renderBlog(JSON.parse(cachedData));
+    return;
+  }
+
+  try {
+    // Mengambil maksimal 3 artikel terbaru untuk halaman beranda
+    const blogQuery = query(
+      collection(db, "blog_posts"),
+      orderBy("createdAt", "desc"),
+      limit(3),
+    );
+    const querySnapshot = await getDocs(blogQuery);
+
+    const posts = [];
+    querySnapshot.forEach((doc) => {
+      posts.push({ id: doc.id, ...doc.data() });
+    });
+
+    sessionStorage.setItem(cacheKey, JSON.stringify(posts));
+    renderBlog(posts);
+  } catch (error) {
+    console.error("Gagal memuat data blog:", error);
+  }
+}
 // Jalankan fungsi saat struktur HTML selesai dimuat
 document.addEventListener("DOMContentLoaded", () => {
   // Pastikan elemen publikasi ada di halaman sebelum menjalankan skrip
@@ -161,5 +223,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tambahkan pemanggilan riset di sini:
   if (document.getElementById("research-list")) {
     fetchResearch();
+  }
+  // Tambahkan pemanggilan blog di sini:
+  if (document.getElementById("blog-list")) {
+    fetchBlog();
   }
 });
