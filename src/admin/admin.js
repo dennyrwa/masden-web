@@ -1,5 +1,13 @@
 // src/admin/admin.js
 
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 // 1. Import Modul Firebase (Disatukan agar tidak terjadi duplikasi deklarasi)
 import { auth, db } from "../firebase/init.js";
 import {
@@ -7,14 +15,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import {
-  collection,
-  addDoc,
-  serverTimestamp,
-  doc,
-  deleteDoc,
-  getDocs,
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const addBlogForm = document.getElementById("add-blog-form");
+const adminBlogList = document.getElementById("admin-blog-list");
 
 // Referensi Elemen UI
 const loginSection = document.getElementById("login-section");
@@ -140,6 +143,31 @@ if (addResForm) {
   });
 }
 
+// Proses Tambah Artikel Blog ke Firestore
+if (addBlogForm) {
+  addBlogForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const newPost = {
+      title: document.getElementById("blog-title").value,
+      content: document.getElementById("blog-content").value,
+      createdAt: serverTimestamp(),
+    };
+
+    try {
+      await addDoc(collection(db, "blog_posts"), newPost);
+      sessionStorage.removeItem("sinta_blog_data");
+      alert("SINTA: Artikel blog berhasil dipublikasikan!");
+      addBlogForm.reset();
+    } catch (error) {
+      console.error("Gagal menambah artikel blog:", error);
+      alert(
+        "SINTA: Terjadi kesalahan. Pastikan Bapak sudah login dengan benar.",
+      );
+    }
+  });
+}
+
 // 6. Manajemen Data (Load Data Sesuai Permintaan)
 if (btnLoadData) {
   btnLoadData.addEventListener("click", async () => {
@@ -169,6 +197,17 @@ if (btnLoadData) {
                     <td><span class="badge bg-secondary">${data.status}</span></td>
                     <td><button class="btn btn-sm btn-danger btn-delete" data-id="${d.id}" data-type="research_projects">Hapus</button></td>
                 </tr>`;
+      });
+
+      // Tarik Data Blog
+      const blogSnapshot = await getDocs(collection(db, "blog_posts"));
+      adminBlogList.innerHTML = "";
+      blogSnapshot.forEach((d) => {
+        const data = d.data();
+        adminBlogList.innerHTML += `<tr>
+                  <td><strong>${data.title}</strong></td>
+                  <td><button class="btn btn-sm btn-danger btn-delete" data-id="${d.id}" data-type="blog_posts">Hapus</button></td>
+              </tr>`;
       });
 
       // Tampilkan tabel dan ubah teks tombol
@@ -214,7 +253,8 @@ function attachDeleteEvents() {
             sessionStorage.removeItem("sinta_research_data");
 
           alert("SINTA: Data berhasil dihapus sepenuhnya.");
-
+          if (type === "blog_posts")
+            sessionStorage.removeItem("sinta_blog_data");
           // Panggil fungsi load ulang agar tabel langsung diperbarui
           btnLoadData.click();
         } catch (error) {
