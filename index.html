@@ -3,366 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO & Academic Meta Tags -->
-    <title>Denny Rakhmad Widi Ashari, M.E. | Akademisi & Praktisi Perbankan Syariah</title>
-    <meta name="description" content="Website personal akademik Denny Rakhmad Widi Ashari. Dosen Manajemen Operasional, peneliti, penulis buku, dan praktisi perbankan syariah.">
-    <meta name="author" content="Denny Rakhmad Widi Ashari">
-    <meta name="keywords" content="Denny Rakhmad Widi Ashari, Manajemen Operasional, Perbankan Syariah, Manajemen Risiko, Dosen UNU Blitar">
-    
-    <!-- Open Graph (Untuk preview saat link dibagikan di WhatsApp/LinkedIn) -->
-    <meta property="og:title" content="Denny Rakhmad Widi Ashari | Academic Profile">
-    <meta property="og:description" content="Profil akademik, publikasi riset, dan rekam jejak profesional di bidang Manajemen Operasional dan Perbankan Syariah.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://masden.klikada.com">
-    
-    <!-- CSS Framework Placeholder (Menunggu konfirmasi Bapak) -->
-    <!-- Contoh pemanggilan Bootstrap 5 -->
+    <title>Admin Dashboard | Denny R.W.A.</title>
+    <!-- Mencegah Google mengindeks halaman admin -->
+    <meta name="robots" content="noindex, nofollow">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- FontAwesome untuk Ikon (Gratis) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="src/assets/style.css">
-    <!-- Schema.org Structured Data untuk Profil Akademisi -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Denny Rakhmad Widi Ashari",
-  "honorificPrefix": "Bapak",
-  "honorificSuffix": "M.E.",
-  "jobTitle": "Dosen dan Asesor Kompetensi",
-  "worksFor": {
-    "@type": "CollegeOrUniversity",
-    "name": "Universitas Nahdlatul Ulama Blitar"
-  },
-  "alumniOf": [
-    {
-      "@type": "CollegeOrUniversity",
-      "name": "Universitas Brawijaya"
-    },
-    {
-      "@type": "CollegeOrUniversity",
-      "name": "Institut Agama Islam Tulungagung"
-    }
-  ],
-  "gender": "Male",
-  "knowsAbout": [
-    "Manajemen Operasional",
-    "Perbankan Syariah",
-    "Manajemen Risiko",
-    "Layanan Prima",
-    "Ekonomi Islam"
-  ],
-  "url": "https://masden.klikada.com",
-  "sameAs": [
-    "https://sinta.kemdiktisaintek.go.id/authors/profile/6802917",
-    "https://scholar.google.com/citations?user=36C13s4AAAAJ",
-    "https://orcid.org/0000-0003-2251-6393",
-    "https://linkedin.com/in/dennyrwa"
-  ]
-}
-</script>
 </head>
 <body class="bg-light">
 
-    <!-- Area Navigasi Utama -->
-    <header id="main-header">
-        <!-- Komponen Navbar akan ditempatkan di sini -->
-        <!-- Navbar Utama -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-        <!-- Brand/Logo -->
-        <a class="navbar-brand fw-bold text-primary" href="#">
-            <i class="fa-solid fa-building-columns me-2"></i>DRW Ashari
-        </a>
-        
-        <!-- Tombol Hamburger untuk Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- Daftar Menu -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#hero">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">Tentang</a>
-                </li>
-                <!-- Dropdown Menu Akademik -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="academicDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Akademik
-                    </a>
-                    <ul class="dropdown-menu border-0 shadow" aria-labelledby="academicDropdown">
-                        <li><a class="dropdown-item" href="#teaching">Pengajaran</a></li>
-                        <li><a class="dropdown-item" href="#research">Riset & Proyek</a></li>
-                        <li><a class="dropdown-item" href="#publications">Publikasi & Buku</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#blog">Blog</a>
-                </li>
-                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                    <!-- Tombol Login tersembunyi/kecil untuk Admin -->
-                    <a class="btn btn-outline-primary btn-sm rounded-pill px-3" href="/admin.html">
-                        <i class="fa-solid fa-lock me-1"></i> Admin
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-    </header>
-
-    <!-- Area Konten Utama -->
-    <main id="main-content">
-        <!-- Hero Section, Profil, dll akan dirender di sini -->
-        <!-- Hero Section -->
-<section id="hero" class="py-5 bg-white">
-    <div class="container my-5">
-        <div class="row align-items-center">
-            <!-- Kolom Teks -->
-            <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
-                <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill shadow-sm">
-                    <i class="fa-solid fa-graduation-cap me-1"></i> Akademisi & Peneliti
-                </span>
-                <h2 class="text-secondary">H.</h2>
-                <h1 class="display-4 fw-bold mb-2">Denny Rakhmad Widi Ashari</h1>
-                <h2 class="text-secondary fs-3 mb-4">M.E.</h2>
-                <p class="lead text-muted mb-4" style="line-height: 1.8;">
-                    Dosen Program Studi Perbankan Syariah dengan kepakaran riset pada <strong>Manajemen Operasional</strong>, Layanan Prima, dan Manajemen Risiko. Menggabungkan ketajaman analisis akademik dengan pengalaman praktis di industri perbankan.
-                </p>
-                <div class="d-flex justify-content-center justify-content-lg-start gap-3">
-                    <a href="#publications" class="btn btn-primary btn-lg px-4 shadow-sm">
-                        <i class="fa-solid fa-book-open me-2"></i>Lihat Publikasi
-                    </a>
-                    <a href="assets/cv-denny-rakhmad.pdf" target="_blank" class="btn btn-outline-secondary btn-lg px-4">
-                        <i class="fa-solid fa-download me-2"></i>Unduh CV
-                    </a>
+    <!-- BAGIAN 1: FORM LOGIN (Tampil jika belum login) -->
+    <div id="login-section" class="container mt-5" style="max-width: 400px; display: none;">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <div class="text-center mb-4">
+                    <i class="fa-solid fa-shield-halved text-primary fs-1 mb-2"></i>
+                    <h4 class="fw-bold">Akses Terbatas</h4>
+                    <p class="text-muted small">Silakan masuk untuk mengelola konten.</p>
                 </div>
-            </div>
-            
-            <!-- Kolom Foto -->
-            <div class="col-lg-6 text-center">
-                <!-- SINTA menyiapkan tempat untuk foto profesional Bapak -->
-                <div class="position-relative d-inline-block">
-                    <img src="https://i1.rgstatic.net/ii/profile.image/11431281083958340-1662941845598_Q512/Denny-Rakhmad-Widi-Ashari.jpg" alt="Bapak H Denny Rakhmad Widi Ashari" class="img-fluid rounded-circle shadow-lg" style="max-width: 350px; border: 8px solid #fff;">
-                    <!-- Ornamen desain kecil (opsional) -->
-                    <div class="position-absolute bottom-0 end-0 bg-white p-2 rounded-circle shadow">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg" alt="Google Scholar" width="40">
+                <form id="login-form">
+                    <div class="mb-3">
+                        <label class="form-label">Email Publikasi</label>
+                        <input type="email" id="admin-email" class="form-control" required>
                     </div>
-                </div>
+                    <div class="mb-4">
+                        <label class="form-label">Kata Sandi</label>
+                        <input type="password" id="admin-password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 fw-bold">Login Dashboard</button>
+                    <a href="index.html" class="btn btn-link w-100 mt-2 text-decoration-none text-muted">Kembali ke Beranda</a>
+                </form>
             </div>
         </div>
     </div>
-</section>
-<!-- Bagian Publikasi & Buku -->
-<section id="publications" class="py-5 bg-light">
-    <div class="container my-4">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Publikasi & Karya Ilmiah</h2>
-            <p class="text-muted">Jurnal, artikel, dan buku terbaru terkait Manajemen Operasional dan Perbankan Syariah.</p>
-        </div>
-        
-        <!-- Wadah untuk merender data dari Firestore -->
-        <div class="row g-4" id="publication-list">
-            <!-- Loading State (Tampil sebelum data selesai dimuat) -->
-            <div class="col-12 text-center" id="loading-indicator">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Memuat data...</span>
-                </div>
-                <p class="mt-2 text-muted">Mengambil data publikasi...</p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Bagian Riset & Proyek -->
-<section id="research" class="py-5 bg-white">
-    <div class="container my-4">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Riset & Proyek</h2>
-            <p class="text-muted">Fokus penelitian empiris pada Manajemen Operasional, Layanan Prima, dan Kepatuhan Perbankan.</p>
-        </div>
-        
-        <div class="row g-4 justify-content-center" id="research-list">
-            <!-- Indikator Loading -->
-            <div class="col-12 text-center text-muted">
-                <div class="spinner-border text-primary spinner-border-sm me-2" role="status"></div>
-                Memuat data riset...
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Bagian Rekam Jejak Industri Perbankan & Asesor -->
-<section id="banking-experience" class="py-5 bg-light">
-    <div class="container my-4">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-primary">Rekam Jejak Industri Perbankan</h2>
-            <p class="text-muted">Pengalaman praktis dan validasi kompetensi dalam tata kelola operasional perbankan.</p>
-        </div>
 
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                
-                <!-- Timeline Container (Riwayat Industri) -->
-                <div class="position-relative border-start border-primary border-3 ms-3 ps-4 mb-5">
+    <!-- BAGIAN 2: PANEL DASHBOARD (Tampil jika sudah login) -->
+    <div id="dashboard-section" class="container-fluid pb-5" style="display: none;">
+        <nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
+            <div class="container">
+                <span class="navbar-brand mb-0 h1"><i class="fa-solid fa-gauge me-2"></i>SINTA CMS</span>
+                <button id="btn-logout" class="btn btn-outline-light btn-sm">Keluar</button>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- MODUL 1: PUBLIKASI -->
+            <h2 class="mb-4">Kelola Publikasi</h2>
+            <div class="card shadow-sm border-0 mb-5">
+                <div class="card-header bg-white fw-bold">Tambah Publikasi Baru</div>
+                <div class="card-body">
+                    <form id="add-publication-form">
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label class="form-label">Judul Publikasi</label>
+                                <input type="text" id="pub-title" class="form-control" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Jenis (Jurnal/Buku)</label>
+                                <select id="pub-type" class="form-select">
+                                    <option value="Artikel Jurnal">Artikel Jurnal</option>
+                                    <option value="Buku">Buku</option>
+                                    <option value="Prosiding">Prosiding</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Penerbit / Nama Jurnal</label>
+                                <input type="text" id="pub-publisher" class="form-control" required>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label">Tahun</label>
+                                <input type="number" id="pub-year" class="form-control" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Tautan DOI / URL</label>
+                                <input type="url" id="pub-doi" class="form-control">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label">Abstrak / Deskripsi Singkat</label>
+                                <textarea id="pub-abstract" class="form-control" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Simpan Publikasi</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- MODUL 2: RISET & PROYEK -->
+            <h2 class="mb-4 mt-5">Kelola Riset & Proyek</h2>
+            <div class="card shadow-sm border-0 mb-5">
+                <div class="card-header bg-white fw-bold">Tambah Proyek Riset Baru</div>
+                <div class="card-body">
+                    <form id="add-research-form">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Judul Riset / Proyek</label>
+                                <input type="text" id="res-title" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Sumber Pendanaan</label>
+                                <input type="text" id="res-funding" class="form-control" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Tahun Mulai</label>
+                                <input type="number" id="res-year" class="form-control" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Status</label>
+                                <select id="res-status" class="form-select">
+                                    <option value="Berjalan">Berjalan</option>
+                                    <option value="Selesai">Selesai</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label">Deskripsi Singkat / Fokus Riset</label>
+                                <textarea id="res-desc" class="form-control" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i>Simpan Riset</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- MODUL 3: MANAJEMEN DATA (HAPUS DATA) -->
+            <h2 class="mb-4 mt-5">Manajemen Data</h2>
+            <div class="card shadow-sm border-0 mb-5 border-top border-danger border-4">
+                <div class="card-header bg-white fw-bold text-danger">Hapus Data Publikasi & Riset</div>
+                <div class="card-body">
+                    <p class="text-muted small mb-4">Untuk menjaga efisiensi kuota database, daftar data hanya akan ditarik dari server jika Bapak menekan tombol di bawah ini.</p>
                     
-                    <!-- Item: Bank Muamalat -->
-                    <div class="mb-5 position-relative">
-                        <!-- Indikator Bulat -->
-                        <div class="position-absolute bg-primary rounded-circle shadow-sm" style="width: 20px; height: 20px; left: -35px; top: 0;"></div>
+                    <button id="btn-load-data" class="btn btn-outline-secondary mb-3">
+                        <i class="fa-solid fa-sync me-2"></i>Muat Daftar Data
+                    </button>
+                    
+                    <!-- Kontainer Tabel -->
+                    <div id="data-management-container" style="display: none;">
+                        <ul class="nav nav-tabs mb-3" id="manageTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pub-tab" data-bs-toggle="tab" data-bs-target="#pub-pane" type="button" role="tab">Data Publikasi</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="res-tab" data-bs-toggle="tab" data-bs-target="#res-pane" type="button" role="tab">Data Riset</button>
+                            </li>
+                        </ul>
                         
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="fw-bold mb-1">PT Bank Muamalat Indonesia, Tbk</h5>
-                                <h6 class="text-primary mb-3">Praktisi Perbankan Syariah</h6>
-                                <p class="text-muted mb-0">
-                                    Mengeksekusi standar operasional layanan perbankan berbasis prinsip syariah. Berfokus pada keandalan layanan nasabah, mitigasi risiko operasional harian, dan implementasi layanan prima (<em>service excellence</em>) yang selaras dengan nilai-nilai ekonomi Islam.
-                                </p>
+                        <div class="tab-content" id="manageTabsContent">
+                            <div class="tab-pane fade show active" id="pub-pane" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle">
+                                        <thead class="table-light"><tr><th>Judul Publikasi</th><th>Tahun</th><th>Aksi</th></tr></thead>
+                                        <tbody id="admin-pub-list"></tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Item: Bank Danamon -->
-                    <div class="mb-4 position-relative">
-                        <!-- Indikator Bulat -->
-                        <div class="position-absolute bg-primary rounded-circle shadow-sm" style="width: 20px; height: 20px; left: -35px; top: 0;"></div>
-                        
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="fw-bold mb-1">PT Bank Danamon Indonesia, Tbk</h5>
-                                <h6 class="text-primary mb-3">Praktisi Perbankan Konvensional</h6>
-                                <p class="text-muted mb-0">
-                                    Membangun fondasi tata kelola manajerial dan operasional perbankan yang disiplin dan sistematis. Terlibat aktif dalam optimalisasi alur kerja layanan garda depan (<em>front office</em>) dan penyelesaian transaksi perbankan secara presisi.
-                                </p>
+                            
+                            <div class="tab-pane fade" id="res-pane" role="tabpanel">
+                                <div class="table-responsive">
+                                    <table class="table table-hover align-middle">
+                                        <thead class="table-light"><tr><th>Judul Riset / Proyek</th><th>Status</th><th>Aksi</th></tr></thead>
+                                        <tbody id="admin-res-list"></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Highlight Card: Asesor BNSP (Validasi Kompetensi) -->
-                <div class="card border-0 shadow-lg bg-white rounded-4 overflow-hidden mt-4">
-                    <div class="row g-0">
-                        <div class="col-md-2 bg-primary d-flex align-items-center justify-content-center py-4">
-                            <i class="fa-solid fa-award text-white" style="font-size: 3rem;"></i>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card-body p-4">
-                                <span class="badge bg-warning text-dark mb-2 px-3 py-1 rounded-pill">Sertifikasi Nasional</span>
-                                <h4 class="fw-bold mb-2">Asesor Kompetensi BNSP</h4>
-                                <h6 class="text-primary fw-semibold mb-3">Skema Pekerjaan Pelayanan Kantor Depan Bank (Front Officer Bank)</h6>
-                                <p class="text-muted mb-0">
-                                    Memegang mandat dari Badan Nasional Sertifikasi Profesi untuk menguji dan memvalidasi standar kompetensi sumber daya manusia di sektor perbankan. Peran ini memastikan setiap praktisi memenuhi standar kualitas pelayanan prima (<em>service excellence</em>) tingkat nasional.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-    </div>
-</section>
-<!-- Area Footer -->
-    <footer id="main-footer">
-<!-- Komponen Footer akan ditempatkan di sini -->
-<!-- Bagian Kontak & Footer -->
-<footer id="contact" class="bg-dark text-white pt-5 pb-3">
-    <div class="container">
-        <div class="row gy-4 mb-4">
-            <!-- Kolom 1: Informasi Singkat -->
-            <div class="col-lg-5">
-                <h4 class="fw-bold mb-3"><i class="fa-solid fa-building-columns me-2"></i>DRW Ashari</h4>
-                <p class="text-light" style="opacity: 0.85;">
-                    Dosen, Asesor Kompetensi, dan Praktisi Manajemen Operasional. Menggabungkan wawasan akademik dengan ketajaman operasional industri.
-                </p>
-                <a href="mailto:drwashari@unublitar.ac.id" class="btn btn-primary mt-2 rounded-pill px-4">
-                    <i class="fa-solid fa-envelope me-2"></i>Kirim Email
-                </a>
             </div>
 
-            <!-- Kolom 2: Profil Akademik -->
-            <div class="col-lg-3 offset-lg-1">
-                <h5 class="fw-bold mb-3">Profil Akademik</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2">
-                        <a href="https://scholar.google.com/citations?user=36C13s4AAAAJ" class="text-white text-decoration-none" style="opacity: 0.85;">
-                            <i class="fa-solid fa-graduation-cap me-2"></i>Google Scholar
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6802917" class="text-white text-decoration-none" style="opacity: 0.85;">
-                            <i class="fa-solid fa-magnifying-glass-chart me-2"></i>SINTA Kemdiktisaintek
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="https://www.scopus.com/authid/detail.uri?authorId=" class="text-white text-decoration-none" style="opacity: 0.85;">
-                            <i class="fa-solid fa-book-journal-whills me-2"></i>Scopus
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="https://orcid.org/0000-0003-2251-6393" class="text-white text-decoration-none" style="opacity: 0.85;">
-                            <i class="fa-brands fa-orcid me-2"></i>ORCID
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Kolom 3: Tautan Cepat & Profesional -->
-            <div class="col-lg-3">
-                <h5 class="fw-bold mb-3">Koneksi Profesional</h5>
-                <ul class="list-unstyled mb-4">
-                    <li class="mb-2">
-                        <a href="https://www.linkedin.com/in/dennyrwa/" target="_blank" class="text-white text-decoration-none" style="opacity: 0.85;">
-                            <i class="fa-brands fa-linkedin me-2"></i>LinkedIn
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="https://masden.klikada.com" class="text-white text-decoration-none" style="opacity: 0.85;">
-                            <i class="fa-solid fa-globe me-2"></i>Website Personal
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <hr class="border-secondary">
-        
-        <!-- Hak Cipta -->
-        <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="mb-0 small" style="opacity: 0.7;">
-                    &copy; <span id="current-year"></span> H. Denny Rakhmad Widi Ashari, M.E. Hak Cipta Dilindungi.
-                </p>
-            </div>
-            <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                <p class="mb-0 small" style="opacity: 0.7;">
-                    Dibangun dengan arsitektur <em>serverless</em> untuk efisiensi tinggi.
-                </p>
-            </div>
         </div>
     </div>
-</footer>
 
-<!-- Script kecil untuk tahun otomatis di footer -->
-<script>
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-</script>
-    </footer>
-
-    <!-- Firebase SDK (Firebase App & Firestore/Auth akan ditambahkan di fase berikutnya) -->
-    <script type="module" src="src/firebase/init.js"></script>
-    
-    <!-- Framework JS -->
+    <!-- Script Bootstrap & Aplikasi -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Main App Logic (WAJIB tambahkan type="module") -->
-    <script type="module" src="src/assets/app.js"></script>
+    <script type="module" src="src/admin/admin.js"></script>
 </body>
 </html>
